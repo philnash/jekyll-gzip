@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Phil Nash"]
   spec.email         = ["philnash@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = "Generate gzipped assets and files for your Jekyll site at build time"
+  spec.description   = "Generate gzipped assets and files for your Jekyll site at build time."
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
