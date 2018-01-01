@@ -1,5 +1,13 @@
+require "yaml"
 require "bundler/setup"
-require "jekyll/gzip"
+require "jekyll"
+require "simplecov"
+
+SimpleCov.start do
+  add_filter "spec"
+end
+
+Jekyll.logger.log_level = :error
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -10,5 +18,31 @@ RSpec.configure do |config|
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
+  end
+
+  SOURCE_DIR = File.expand_path("../fixtures", __FILE__)
+  DEST_DIR   = File.expand_path("../dest", __FILE__)
+
+  def source_dir(*files)
+    File.join(SOURCE_DIR, *files)
+  end
+
+  def dest_dir(*files)
+    File.join(DEST_DIR, *files)
+  end
+
+  CONFIG_DEFAULTS = {
+    "source"      => source_dir,
+    "destination" => dest_dir
+  }.freeze
+
+  def site_config
+    YAML.load(File.read(source_dir('_config.yml')))
+  end
+
+  def make_site
+    config = Jekyll::Utils.deep_merge_hashes(CONFIG_DEFAULTS, site_config)
+    site_config = Jekyll.configuration(config)
+    Jekyll::Site.new(site_config)
   end
 end
