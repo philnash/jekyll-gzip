@@ -2,6 +2,8 @@
 
 Generate gzipped assets and files for your Jekyll site at build time.
 
+[![Build Status](https://travis-ci.org/philnash/jekyll-gzip.svg?branch=master)](https://travis-ci.org/philnash/jekyll-gzip)
+
 Performance in web applications is important. You know that, which is why you have created a static site using Jekyll. But you want a bit more performance. You're serving your assets and files gzipped, but you're making your webserver do it?
 
 Why not just generate those gzip files at build time? And with the maximum compression too?
