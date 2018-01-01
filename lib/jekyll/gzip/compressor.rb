@@ -32,7 +32,7 @@ module Jekyll
         end
       end
 
-      def compress(site)
+      def compress
         site.each_site_file do |file|
           compress_file(file.destination(site.dest))
         end

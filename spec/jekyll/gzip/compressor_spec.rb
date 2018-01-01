@@ -37,7 +37,7 @@ RSpec.describe Jekyll::Gzip::Compressor do
     end
 
     it "compresses all files in the site" do
-      compressor.compress(site)
+      compressor.compress
       files = [
         dest_dir("index.html"),
         dest_dir("css/main.css"),
