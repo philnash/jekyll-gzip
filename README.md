@@ -10,6 +10,10 @@ Why not just generate those gzip files at build time? And with the maximum compr
 
 `Jekyll::Gzip` does just that. Add the gem to your Jekyll application and when you build your site it will generate gzip files for all text based files (HTML, CSS, JavaScript, etc).
 
+## Want even more compression?
+
+Zlib's gzipping capabilities don't quite squeeze all the compression out of our files that we could want. If you want a slower but better compression algorithm, check out [Jekyll::Zopfli](https://github.com/philnash/jekyll-zopfli).
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -26,7 +30,9 @@ bundle install
 
 ## Usage
 
-Once you have the gem installed, run `bundle exec jekyll build`. In your destination directory (`_site` by default) you will find gzipped files.
+Once you have the gem installed, run `JEKYLL_ENV=production bundle exec jekyll build`. In your destination directory (`_site` by default) you will find gzipped files.
+
+`Jekyll::Gzip` only runs when the environment variable `JEKYLL_ENV` is set to `production` as dealing with gzipping files is unnecessary in development mode and just slows down the site build.
 
 ### Serving pre-compiled gzip files
 

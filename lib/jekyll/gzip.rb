@@ -7,5 +7,7 @@ module Jekyll
 end
 
 Jekyll::Hooks.register :site, :post_write do |site|
-  Jekyll::Gzip::Compressor.new(site).compress
+  if ENV["JEKYLL_ENV"] == "production"
+    Jekyll::Gzip::Compressor.new(site).compress
+  end
 end
