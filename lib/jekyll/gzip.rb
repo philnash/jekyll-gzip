@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "jekyll/gzip/version"
 require "jekyll/gzip/compressor"
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "zlib"
 
 module Jekyll
@@ -39,4 +41,4 @@ module Jekyll
       end
     end
   end
-end 
+end
