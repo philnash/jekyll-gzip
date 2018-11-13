@@ -5,10 +5,12 @@
 ### Added
 
 * Adds frozen string literal comments
+* Tries to hook into Jekyll::Assets if available
 
 ### Changed
 
 * Uses built in `Jekyll.env` instead of `ENV["JEKYLL_ENV"]`
+* Changes `Jekyll::Gzip::Compressor` to a module and implements a `compress_directory` method
 
 ## 1.1.0 (2018-01-03) [☰](https://github.com/philnash/jekyll-gzip/compare/v1.0.0...v1.1.0)
 

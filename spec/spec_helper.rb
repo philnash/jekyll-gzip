@@ -34,16 +34,20 @@ RSpec.configure do |config|
   end
 
   CONFIG_DEFAULTS = {
-    "source"      => source_dir,
-    "destination" => dest_dir
+    "source"            => source_dir,
+    "destination"       => dest_dir,
+    "title"             => "Your awesome title",
+    "email"             => "your-email@domain.com",
+    "description"       => "A description",
+    "baseurl"           => "",
+    "url"               => "http://yourdomain.com",
+    "twitter_username"  => "jekyllrb",
+    "github_username"   => "jekyll",
+    "markdown"          => "kramdown"
   }.freeze
 
-  def site_config
-    YAML.load(File.read(source_dir('_config.yml')))
-  end
-
-  def make_site
-    config = Jekyll::Utils.deep_merge_hashes(CONFIG_DEFAULTS, site_config)
+  def make_site(opts={})
+    config = Jekyll::Utils.deep_merge_hashes(opts, CONFIG_DEFAULTS)
     site_config = Jekyll.configuration(config)
     Jekyll::Site.new(site_config)
   end
