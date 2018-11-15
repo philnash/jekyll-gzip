@@ -1,27 +1,32 @@
 # frozen_string_literal: true
 
-require "jekyll/gzip/version"
-require "jekyll/gzip/compressor"
-require "pathname"
+require 'jekyll/gzip/version'
+require 'jekyll/gzip/config'
+require 'jekyll/gzip/compressor'
+require 'pathname'
 
 module Jekyll
   module Gzip
   end
 end
 
+Jekyll::Hooks.register :site, :after_init do |site|
+  config = site.config['gzip'] || {}
+  site.config['gzip'] = Jekyll::Gzip::DEFAULT_CONFIG.merge(config) || []
+  puts site.config['gzip']
+end
+
 Jekyll::Hooks.register :site, :post_write do |site|
-  if Jekyll.env == "production"
-    Jekyll::Gzip::Compressor.compress_site(site)
-  end
+  Jekyll::Gzip::Compressor.compress_site(site) if Jekyll.env == 'production'
 end
 
 begin
-  require "jekyll-assets"
+  require 'jekyll-assets'
 
   Jekyll::Assets::Hook.register :env, :after_write do |env|
-    if Jekyll.env == "production"
-      path = Pathname.new("#{env.jekyll.config["destination"]}#{env.prefix_url}")
-      Jekyll::Gzip::Compressor.compress_directory(path)
+    if Jekyll.env == 'production'
+      path = Pathname.new("#{env.jekyll.config['destination']}#{env.prefix_url}")
+      Jekyll::Gzip::Compressor.compress_directory(path, env.jekyll)
     end
   end
 rescue LoadError

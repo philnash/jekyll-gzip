@@ -5,19 +5,26 @@ require "./lib/jekyll/gzip/compressor"
 
 RSpec.describe Jekyll::Gzip::Compressor do
   let(:site) { make_site }
+  let(:extensions) { site.config['gzip'] && site.config['gzip']['extensions'] }
   before(:each) { site.process }
   after(:each) { FileUtils.rm_r(dest_dir) }
 
   describe "given a file name" do
     it "creates a gzip file" do
       file_name = dest_dir("index.html")
-      Jekyll::Gzip::Compressor.compress_file(file_name)
+      Jekyll::Gzip::Compressor.compress_file(file_name, ['.html'])
       expect(File.exist?("#{file_name}.gz")).to be true
+    end
+
+    it "doesn't create a gzip file if the extension is not present" do
+      file_name = dest_dir("index.html")
+      Jekyll::Gzip::Compressor.compress_file(file_name, [])
+      expect(File.exist?("#{file_name}.gz")).to be false
     end
 
     it "compresses the content of the file in the gzip file" do
       file_name = dest_dir("index.html")
-      Jekyll::Gzip::Compressor.compress_file(file_name)
+      Jekyll::Gzip::Compressor.compress_file(file_name, ['.html'])
       content = File.read(file_name)
       Zlib::GzipReader.open("#{file_name}.gz") {|gz|
         expect(gz.read).to eq(content)
@@ -26,7 +33,7 @@ RSpec.describe Jekyll::Gzip::Compressor do
 
     it "doesn't compress non text files" do
       file_name = dest_dir("images/test.png")
-      Jekyll::Gzip::Compressor.compress_file(file_name)
+      Jekyll::Gzip::Compressor.compress_file(file_name, ['.html'])
       expect(File.exist?("#{file_name}.gz")).to be false
     end
   end
@@ -49,7 +56,7 @@ RSpec.describe Jekyll::Gzip::Compressor do
 
   describe "given a destination directory" do
     it "compresses all the text files in the directory" do
-      Jekyll::Gzip::Compressor.compress_directory(dest_dir)
+      Jekyll::Gzip::Compressor.compress_directory(dest_dir, site)
       files = [
         dest_dir("index.html"),
         dest_dir("css/main.css"),

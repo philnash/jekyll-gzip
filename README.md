@@ -46,6 +46,31 @@ In your destination directory (`_site` by default) you will find gzipped version
 
 `Jekyll::Gzip` only runs when the environment variable `JEKYLL_ENV` is set to `production` as dealing with gzipping files is unnecessary in development mode and just slows down the site build.
 
+### Configuration
+
+By default, `Jekyll::Gzip` will compress all files with the following extensions:
+
+- '.html'
+- '.css'
+- '.js'
+- '.txt'
+- '.ttf'
+- '.atom'
+- '.stl'
+- '.xml'
+- '.svg'
+- '.eot'
+
+You can supply your own extensions by adding a `gzip` key to your site's `_config.yml` listing the extensions that you want to compress. For example to only compress HTML, CSS and JavaScript files, add the following to `_config.yml`:
+
+```yml
+gzip:
+  extensions:
+    - '.html'
+    - '.css'
+    - '.js
+```
+
 ### Serving pre-compiled gzip files
 
 You will likely need to adjust your web server config to serve these precomputed gzip files. See below for common server configurations:

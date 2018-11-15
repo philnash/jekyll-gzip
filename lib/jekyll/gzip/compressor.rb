@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require "zlib"
+require 'jekyll/gzip/config'
+require 'zlib'
 
 module Jekyll
   ##
@@ -24,7 +25,7 @@ module Jekyll
         '.xml',
         '.svg',
         '.eot'
-      ]
+      ].freeze
 
       ##
       # Takes an instance of +Jekyll::Site+ and maps over the site files and
@@ -39,7 +40,7 @@ module Jekyll
       # @return void
       def self.compress_site(site)
         site.each_site_file do |file|
-          compress_file(file.destination(site.dest))
+          compress_file(file.destination(site.dest), zippable_extensions(site))
         end
       end
 
@@ -54,9 +55,10 @@ module Jekyll
       #   compression.
       #
       # @return void
-      def self.compress_directory(dir)
-        files = Dir.glob(dir + "**/*{#{ZIPPABLE_EXTENSIONS.join(',')}}")
-        files.each { |file| compress_file(file) }
+      def self.compress_directory(dir, site)
+        extensions = zippable_extensions(site).join(',')
+        files = Dir.glob(dir + "**/*{#{extensions}")
+        files.each { |file| compress_file(file, extensions) }
       end
 
       ##
@@ -69,14 +71,20 @@ module Jekyll
       # @param file_name [String] The file name of the file we want to compress
       #
       # @return void
-      def self.compress_file(file_name)
-        return unless ZIPPABLE_EXTENSIONS.include?(File.extname(file_name))
+      def self.compress_file(file_name, extensions)
+        return unless extensions.include?(File.extname(file_name))
         zipped = "#{file_name}.gz"
         Zlib::GzipWriter.open(zipped, Zlib::BEST_COMPRESSION) do |gz|
           gz.mtime = File.mtime(file_name)
           gz.orig_name = file_name
           gz.write IO.binread(file_name)
         end
+      end
+
+      private
+
+      def self.zippable_extensions(site)
+        site.config['gzip'] && site.config['gzip']['extensions'] || Jekyll::Gzip::DEFAULT_CONFIG['extensions']
       end
     end
   end
