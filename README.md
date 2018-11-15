@@ -22,16 +22,25 @@ Zopfli is about the best compression we can get out of the gzip format, but ther
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add `Jekyll::Gzip` to your application's dependencies:
 
 ```ruby
-gem 'jekyll-gzip'
+group :jekyll_plugins do
+  gem 'jekyll-gzip'
+end
 ```
 
 And then execute:
 
 ```
 bundle install
+```
+
+Then add the plugin to the `plugins` key in your `_config.yml`
+
+```yml
+plugins:
+  - jekyll-gzip
 ```
 
 ## Usage
