@@ -13,21 +13,6 @@ module Jekyll
     # The module that does the compressing using Zlib.
     module Compressor
       ##
-      # A list of extensions the library will compress
-      ZIPPABLE_EXTENSIONS = [
-        '.html',
-        '.css',
-        '.js',
-        '.txt',
-        '.ttf',
-        '.atom',
-        '.stl',
-        '.xml',
-        '.svg',
-        '.eot'
-      ].freeze
-
-      ##
       # Takes an instance of +Jekyll::Site+ and maps over the site files and
       # compressing them in the destination directory.
       # @example
