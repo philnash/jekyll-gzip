@@ -17,7 +17,7 @@ module Jekyll
       # compressing them in the destination directory.
       # @example
       #     site = Jekyll::Site.new(site_config)
-      #     Jekyll:Gzip::Compressor.compress_site(site)
+      #     Jekyll::Gzip::Compressor.compress_site(site)
       #
       # @param site [Jekyll::Site] A Jekyll::Site object that has generated its
       #   site files ready for compression.
@@ -34,26 +34,32 @@ module Jekyll
       # in place.
       #
       # @example
-      #     Jekyll:Gzip::Compressor.compress_directory("~/blog/_site")
+      #     Jekyll::Gzip::Compressor.compress_directory("~/blog/_site")
       #
       # @param dir [Pathname, String] The path to a directory of files ready for
       #   compression.
+      # @param site [Jekyll::Site] An instance of the `Jekyll::Site` used for
+      #   config.
       #
       # @return void
       def self.compress_directory(dir, site)
         extensions = zippable_extensions(site).join(',')
-        files = Dir.glob(dir + "**/*{#{extensions}")
+        files = Dir.glob(dir + "**/*{#{extensions}}")
         files.each { |file| compress_file(file, extensions) }
       end
 
       ##
-      # Takes a file name and compresses it using Zlib, outputting the gzipped
-      # file under the name of the original file with an extra .gz extension.
+      # Takes a file name and an array of extensions. If the file name extension
+      # matches one of the extensions in the array then the file is loaded and
+      # compressed using Zlib, outputting the gzipped file under the name of
+      # the original file with an extra .gz extension.
       #
       # @example
       #     Jekyll::Gzip::Compressor.compress_file("~/blog/_site/index.html")
       #
       # @param file_name [String] The file name of the file we want to compress
+      # @param extensions [Array<String>] The extensions of files that will be
+      #    compressed.
       #
       # @return void
       def self.compress_file(file_name, extensions)

@@ -11,6 +11,7 @@
 
 * Uses built in `Jekyll.env` instead of `ENV["JEKYLL_ENV"]`
 * Changes `Jekyll::Gzip::Compressor` to a module and implements a `compress_directory` method
+* Moves Jekyll::Gzip::ZIPPABLE_EXTENSIONS into plugin config that can overwritten in the site config
 
 ## 1.1.0 (2018-01-03) [☰](https://github.com/philnash/jekyll-gzip/compare/v1.0.0...v1.1.0)
 

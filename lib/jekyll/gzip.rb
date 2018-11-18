@@ -12,8 +12,7 @@ end
 
 Jekyll::Hooks.register :site, :after_init do |site|
   config = site.config['gzip'] || {}
-  site.config['gzip'] = Jekyll::Gzip::DEFAULT_CONFIG.merge(config) || []
-  puts site.config['gzip']
+  site.config['gzip'] = Jekyll::Gzip::DEFAULT_CONFIG.merge(config) || {}
 end
 
 Jekyll::Hooks.register :site, :post_write do |site|

@@ -5,7 +5,6 @@ require "./lib/jekyll/gzip/compressor"
 
 RSpec.describe Jekyll::Gzip::Compressor do
   let(:site) { make_site }
-  let(:extensions) { site.config['gzip'] && site.config['gzip']['extensions'] }
   before(:each) { site.process }
   after(:each) { FileUtils.rm_r(dest_dir) }
 
