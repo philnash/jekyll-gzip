@@ -45,10 +45,16 @@ plugins:
 
 ## Usage
 
-Once you have the gem installed, run:
+Once you have the gem installed, build your Jekyll site in production mode. On Mac/Linux you can run
 
 ```bash
 JEKYLL_ENV=production bundle exec jekyll build
+```
+
+On Windows, set the `JEKYLL_ENV` environment variable to `"production"`. Check out [this blog post on setting environment variables on Windows](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html). Then run:
+
+```bash
+bundle exec jekyll build
 ```
 
 In your destination directory (`_site` by default) you will find gzipped versions of all your text files.
