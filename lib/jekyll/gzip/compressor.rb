@@ -13,7 +13,7 @@ module Jekyll
     # The module that does the compressing using Zlib.
     module Compressor
       ##
-      # Takes an instance of +Jekyll::Site+ and maps over the site files and
+      # Takes an instance of +Jekyll::Site+ and maps over the site files,
       # compressing them in the destination directory.
       # @example
       #     site = Jekyll::Site.new(site_config)
@@ -34,7 +34,7 @@ module Jekyll
       # in place.
       #
       # @example
-      #     Jekyll::Gzip::Compressor.compress_directory("~/blog/_site")
+      #     Jekyll::Gzip::Compressor.compress_directory("~/blog/_site", site)
       #
       # @param dir [Pathname, String] The path to a directory of files ready for
       #   compression.
