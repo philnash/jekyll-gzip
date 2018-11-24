@@ -2,6 +2,10 @@
 
 ## Ongoing [☰](https://github.com/philnash/jekyll-gzip/compare/v1.1.0...master)
 
+...
+
+## 2.0.0 (2018-11-24) [☰](https://github.com/philnash/jekyll-gzip/compare/v1.1.0...v2.0.0)
+
 ### Added
 
 * Adds frozen string literal comments
