@@ -1,8 +1,14 @@
 # Changelog
 
-## Ongoing [☰](https://github.com/philnash/jekyll-gzip/compare/v1.1.0...master)
+## Ongoing [☰](https://github.com/philnash/jekyll-gzip/compare/v2.1.0...master)
 
 ...
+
+## 2.1.0 (2019-03-30) [☰](https://github.com/philnash/jekyll-gzip/compare/v2.0.0...v2.1.0)
+
+### Added
+
+* Adds setting to replace original files with gzipped for serving from AWS S3
 
 ## 2.0.0 (2018-11-24) [☰](https://github.com/philnash/jekyll-gzip/compare/v1.1.0...v2.0.0)
 
