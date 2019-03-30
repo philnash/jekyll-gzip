@@ -25,7 +25,11 @@ module Jekyll
       # @return void
       def self.compress_site(site)
         site.each_site_file do |file|
-          compress_file(file.destination(site.dest), zippable_extensions(site))
+          compress_file(
+            file.destination(site.dest),
+            extensions: zippable_extensions(site),
+            replace_file: replace_files(site)
+          )
         end
       end
 
@@ -44,8 +48,9 @@ module Jekyll
       # @return void
       def self.compress_directory(dir, site)
         extensions = zippable_extensions(site).join(',')
+        replace_file = replace_files(site)
         files = Dir.glob(dir + "**/*{#{extensions}}")
-        files.each { |file| compress_file(file, extensions) }
+        files.each { |file| compress_file(file, extensions: extensions, replace_file: replace_file) }
       end
 
       ##
@@ -62,9 +67,9 @@ module Jekyll
       #    compressed.
       #
       # @return void
-      def self.compress_file(file_name, extensions)
+      def self.compress_file(file_name, extensions: [], replace_file: false)
         return unless extensions.include?(File.extname(file_name))
-        zipped = "#{file_name}.gz"
+        zipped = replace_file ? file_name : "#{file_name}.gz"
         Zlib::GzipWriter.open(zipped, Zlib::BEST_COMPRESSION) do |gz|
           gz.mtime = File.mtime(file_name)
           gz.orig_name = file_name
@@ -75,7 +80,12 @@ module Jekyll
       private
 
       def self.zippable_extensions(site)
-        site.config['gzip'] && site.config['gzip']['extensions'] || Jekyll::Gzip::DEFAULT_CONFIG['extensions']
+        site.config.dig('gzip', 'extensions') || Jekyll::Gzip::DEFAULT_CONFIG['extensions']
+      end
+
+      def self.replace_files(site)
+        replace_files = site.config.dig('gzip', 'replace_files')
+        replace_files.nil? ? Jekyll::Gzip::DEFAULT_CONFIG['replace_files'] : replace_files
       end
     end
   end
