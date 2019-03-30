@@ -14,7 +14,8 @@ module Jekyll
         '.xml',
         '.svg',
         '.eot'
-      ].freeze
+      ].freeze,
+      'replace_files' => false
     }.freeze
   end
 end
