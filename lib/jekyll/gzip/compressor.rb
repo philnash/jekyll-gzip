@@ -65,6 +65,8 @@ module Jekyll
       # @param file_name [String] The file name of the file we want to compress
       # @param extensions [Array<String>] The extensions of files that will be
       #    compressed.
+      # @param replace_file [Boolean] Whether the origina file should be
+      #    replaced or written alongside the original with a `.gz` extension
       #
       # @return void
       def self.compress_file(file_name, extensions: [], replace_file: false)
