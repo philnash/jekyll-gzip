@@ -1,8 +1,14 @@
 # Changelog
 
-## Ongoing [☰](https://github.com/philnash/jekyll-gzip/compare/v2.1.0...master)
+## Ongoing [☰](https://github.com/philnash/jekyll-gzip/compare/v2.1.1...master)
 
 ...
+
+## 2.1.1 (2019-03-30) [☰](https://github.com/philnash/jekyll-gzip/compare/v2.1.0...v2.1.1)
+
+### Fixed
+
+* Replacing files with gzipped version wasn't working, fixed thanks to [k0nserv](https://github.com/k0nserv) in #6.
 
 ## 2.1.0 (2019-03-30) [☰](https://github.com/philnash/jekyll-gzip/compare/v2.0.0...v2.1.0)
 
