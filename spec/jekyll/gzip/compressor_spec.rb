@@ -39,10 +39,14 @@ RSpec.describe Jekyll::Gzip::Compressor do
     it "replaces the file if the settings say so" do
       file_name = dest_dir("index.html")
       original_file_size = File.size(file_name)
+      content = File.read(file_name)
       Jekyll::Gzip::Compressor.compress_file(file_name, extensions: ['.html'], replace_file: true)
       expect(File.exist?("#{file_name}")).to be true
       expect(File.exist?("#{file_name}.gz")).to be false
       expect(File.size(file_name)).to be < original_file_size
+      Zlib::GzipReader.open("#{file_name}") {|gz|
+        expect(gz.read).to eq(content)
+      }
     end
   end
 
