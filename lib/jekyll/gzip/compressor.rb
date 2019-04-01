@@ -72,10 +72,11 @@ module Jekyll
       def self.compress_file(file_name, extensions: [], replace_file: false)
         return unless extensions.include?(File.extname(file_name))
         zipped = replace_file ? file_name : "#{file_name}.gz"
+        file_content = IO.binread(file_name)
         Zlib::GzipWriter.open(zipped, Zlib::BEST_COMPRESSION) do |gz|
           gz.mtime = File.mtime(file_name)
           gz.orig_name = file_name
-          gz.write IO.binread(file_name)
+          gz.write file_content
         end
       end
 
