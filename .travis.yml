@@ -6,9 +6,14 @@ rvm:
   - 2.4
   - 2.3
   - ruby-head
+env:
+  - 'JEKYLL_VERSION="~> 3.0"'
+  - 'JEKYLL_VERSION="~> 4.0"'
 matrix:
   allow_failures:
     - rvm: ruby-head
-
+  exclude:
+    - rvm: 2.3
+      env: 'JEKYLL_VERSION="~> 4.0"'
 before_install: gem install bundler
 script: bundle exec rspec
