@@ -4,7 +4,7 @@
 
 ...
 
-## 2.2.0 (2019-08-26) [☰](https://github.com/philnash/jekyll-gzip/compare/v2.1.1...v2.2.0)
+## 2.3.0 (2019-08-26) [☰](https://github.com/philnash/jekyll-gzip/compare/v2.1.1...v2.3.0)
 
 ### Changed
 
