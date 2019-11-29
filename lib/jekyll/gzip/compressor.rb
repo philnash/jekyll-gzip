@@ -102,21 +102,13 @@ module Jekyll
 
       # Compresses the file if the site is built incrementally and the
       # source was modified or the compressed file doesn't exist
-      #
-      # We access the cache directly because Jekyll doesn't expect us to
-      # ask twice and always responds false to regenerate?
-      #
-      # @see jekyll/regenerator.rb
       def self.regenerate?(file, site)
-        source_path = if file.is_a? Page
-            site.in_source_dir(file.relative_path)
-          else
-            file.path
-          end
+        orig   = file.destination(site.dest)
+        zipped = zipped(orig, replace_files(site))
 
-        zipped = zipped(file.destination(site.dest), replace_files(site))
+        return true unless File.exist? zipped
 
-        site.regenerator.cache[source_path] || !File.exist?(zipped)
+        File.mtime(orig) > File.mtime(zipped)
       end
     end
   end
