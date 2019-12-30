@@ -1,8 +1,8 @@
 # Changelog
 
-## Ongoing [☰](https://github.com/philnash/jekyll-gzip/compare/v2.1.1...master)
+## Ongoing [☰](https://github.com/philnash/jekyll-gzip/compare/v2.3.0...master)
 
-...
+- Doesn't regenerate files that haven't changed in incremental builds (thanks [@fauno](https://github.com/fauno))
 
 ## 2.3.0 (2019-08-26) [☰](https://github.com/philnash/jekyll-gzip/compare/v2.1.1...v2.3.0)
 
