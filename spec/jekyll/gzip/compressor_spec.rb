@@ -64,6 +64,25 @@ RSpec.describe Jekyll::Gzip::Compressor do
         expect(File.exist?("#{file_name}.gz"))
       end
     end
+
+    it "doesn't compress the files again if they are already compressed and haven't changed" do
+      Jekyll::Gzip::Compressor.compress_site(site)
+
+      allow(Zlib::GzipWriter).to receive(:open)
+
+      Jekyll::Gzip::Compressor.compress_site(site)
+      expect(Zlib::GzipWriter).not_to have_received(:open)
+    end
+
+    it "does compress files that change between compressions" do
+      Jekyll::Gzip::Compressor.compress_site(site)
+
+      allow(Zlib::GzipWriter).to receive(:open).and_call_original
+
+      FileUtils.touch(dest_dir("about/index.html"))
+      Jekyll::Gzip::Compressor.compress_site(site)
+      expect(Zlib::GzipWriter).to have_received(:open).once
+    end
   end
 
   describe "given a destination directory" do
