@@ -79,7 +79,7 @@ RSpec.describe Jekyll::Gzip::Compressor do
 
       allow(Zlib::GzipWriter).to receive(:open).and_call_original
 
-      FileUtils.touch(dest_dir("about/index.html"))
+      FileUtils.touch(dest_dir("about/index.html"), mtime: Time.now + 1)
       Jekyll::Gzip::Compressor.compress_site(site)
       expect(Zlib::GzipWriter).to have_received(:open).once
     end
