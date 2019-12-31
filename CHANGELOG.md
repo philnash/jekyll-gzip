@@ -1,8 +1,19 @@
 # Changelog
 
-## Ongoing [☰](https://github.com/philnash/jekyll-gzip/compare/v2.4.0...master)
+## Ongoing [☰](https://github.com/philnash/jekyll-gzip/compare/v2.4.1...master)
+
+...
+
+## 2.4.1 (2019-12-31) [☰](https://github.com/philnash/jekyll-gzip/compare/v2.4.0...v2.4.1)
+
+### Changed
+
+- Extends regeneration logic to files compressed by directory, not just site. 
+- Fixes tests that were just wrong for quite a long time.
 
 ## 2.4.0 (2019-12-31) [☰](https://github.com/philnash/jekyll-gzip/compare/v2.3.0...v2.4.0)
+
+### Changed
 
 - Doesn't regenerate files that haven't changed in incremental builds (thanks [@fauno](https://github.com/fauno))
 
