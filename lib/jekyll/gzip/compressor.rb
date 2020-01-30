@@ -51,7 +51,7 @@ module Jekyll
       def self.compress_directory(dir, site)
         extensions = zippable_extensions(site).join(',')
         replace_file = replace_files(site)
-        files = Dir.glob(dir + "/**/*{#{extensions}}")
+        files = Dir.glob(File.join(dir, "**", "*{#{extensions}}"))
         files.each do |file|
           next unless regenerate?(file, site)
 
