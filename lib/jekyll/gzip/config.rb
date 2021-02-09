@@ -7,6 +7,7 @@ module Jekyll
         '.html',
         '.css',
         '.js',
+        '.json',
         '.txt',
         '.ttf',
         '.atom',
