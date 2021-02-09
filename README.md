@@ -70,6 +70,7 @@ By default, `Jekyll::Gzip` will compress all files with the following extensions
 - '.html'
 - '.css'
 - '.js'
+- '.json'
 - '.txt'
 - '.ttf'
 - '.atom'
