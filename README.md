@@ -2,7 +2,7 @@
 
 Generate gzipped assets and files for your Jekyll site at build time.
 
-[![Gem Version](https://badge.fury.io/rb/jekyll-gzip.svg)](https://rubygems.org/gems/jekyll-gzip) [![Build Status](https://travis-ci.org/philnash/jekyll-gzip.svg?branch=master)](https://travis-ci.org/philnash/jekyll-gzip) [![Maintainability](https://api.codeclimate.com/v1/badges/895369c1c7a17f879b00/maintainability)](https://codeclimate.com/github/philnash/jekyll-gzip/maintainability) [![Inline docs](https://inch-ci.org/github/philnash/jekyll-gzip.svg?branch=master)](https://inch-ci.org/github/philnash/jekyll-gzip)
+[![Gem Version](https://badge.fury.io/rb/jekyll-gzip.svg)](https://rubygems.org/gems/jekyll-gzip) [![Build status](https://github.com/philnash/jekyll-gzip/workflows/tests/badge.svg)](https://github.com/philnash/jekyll-gzip/actions) [![Maintainability](https://api.codeclimate.com/v1/badges/895369c1c7a17f879b00/maintainability)](https://codeclimate.com/github/philnash/jekyll-gzip/maintainability) [![Inline docs](https://inch-ci.org/github/philnash/jekyll-gzip.svg?branch=master)](https://inch-ci.org/github/philnash/jekyll-gzip)
 
 [API docs](http://www.rubydoc.info/gems/jekyll-gzip/) | [GitHub repo](https://github.com/philnash/jekyll-gzip)
 
