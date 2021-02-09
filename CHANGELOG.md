@@ -1,8 +1,15 @@
 # Changelog
 
-## Ongoing [☰](https://github.com/philnash/jekyll-gzip/compare/v2.4.1...master)
+## Ongoing [☰](https://github.com/philnash/jekyll-gzip/compare/v2.5.0...master)
 
 ...
+
+## 2.5.0 (2021-02-09) [☰](https://github.com/philnash/jekyll-gzip/compare/v2.4.2...v2.5.0)
+
+### Changed
+
+- Added JSON files to compressable extensions
+- Moved from Travis CI to GitHub Actions
 
 ## 2.4.2 (2020-01-30) [☰](https://github.com/philnash/jekyll-gzip/compare/v2.4.1...v2.4.2)
 
