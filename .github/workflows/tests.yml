@@ -1,0 +1,25 @@
+name: tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: [2.5, 2.6, 2.7, 3.0, head]
+        jekyll: ["3.0", "4.0"]
+    continue-on-error: ${{ endsWith(matrix.ruby, 'head') }}
+    env:
+      JEKYLL_VERSION: ~> ${{ matrix.jekyll }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby ${{ matrix.ruby }}
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+      - name: "Install dependencies"
+        run: bundle install
+      - name: Run tests
+        run: bundle exec rspec
