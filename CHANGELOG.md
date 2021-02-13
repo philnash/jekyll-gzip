@@ -1,6 +1,6 @@
 # Changelog
 
-## Ongoing [☰](https://github.com/philnash/jekyll-gzip/compare/v2.5.0...master)
+## Ongoing [☰](https://github.com/philnash/jekyll-gzip/compare/v2.5.0...main)
 
 ...
 
