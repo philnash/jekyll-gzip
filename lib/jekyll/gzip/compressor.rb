@@ -95,22 +95,16 @@ module Jekyll
 
       private
 
-      def self.config(site)
-        config = site.config['gzip'] || {}
-        Jekyll::Gzip::DEFAULT_CONFIG.merge(config)
-      end
-
       def self.zipped(file_name, replace_file)
         replace_file ? file_name : "#{file_name}.gz"
       end
 
       def self.zippable_extensions(site)
-        config(site).dig('extensions') || Jekyll::Gzip::DEFAULT_CONFIG['extensions']
+        site.config.dig("gzip", "extensions") || Jekyll::Gzip::DEFAULT_CONFIG.fetch("extensions")
       end
 
       def self.replace_files(site)
-        replace_files = config(site).dig('replace_files')
-        replace_files.nil? ? Jekyll::Gzip::DEFAULT_CONFIG['replace_files'] : replace_files
+        site.config.dig("gzip", "replace_files") || Jekyll::Gzip::DEFAULT_CONFIG.fetch("replace_files")
       end
 
       # Compresses the file if the site is built incrementally and the
