@@ -4,6 +4,12 @@
 
 ...
 
+## 2.5.1 (2021-02-13) [☰](https://github.com/philnash/jekyll-gzip/compare/v2.5.0...v2.5.1)
+
+### Fixed
+
+- Stop overwriting Jekyll config, which invalidates the Jekyll cache (see https://github.com/jekyll/jekyll/issues/8551)
+
 ## 2.5.0 (2021-02-09) [☰](https://github.com/philnash/jekyll-gzip/compare/v2.4.2...v2.5.0)
 
 ### Changed
