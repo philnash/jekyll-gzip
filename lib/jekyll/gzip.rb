@@ -10,11 +10,6 @@ module Jekyll
   end
 end
 
-Jekyll::Hooks.register :site, :after_init do |site|
-  config = site.config['gzip'] || {}
-  site.config['gzip'] = Jekyll::Gzip::DEFAULT_CONFIG.merge(config) || {}
-end
-
 Jekyll::Hooks.register :site, :post_write do |site|
   Jekyll::Gzip::Compressor.compress_site(site) if Jekyll.env == 'production'
 end
